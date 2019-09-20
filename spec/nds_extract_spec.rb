@@ -1,27 +1,68 @@
 require 'spec_helper'
 
+describe 'provided method' do
+  describe 'flatten_a_o_a' do
+    it 'flattens an a_a_a of Integers' do
+      expect(flatten_a_o_a([[1,2],[3,4,5],[6]])).to eq([1,2,3,4,5,6])
+    end
+  end
 
-# describe 'total_gross' do
-#   it 'correctly totals the total gross' do
-#     expect(total_gross(directors_database)).to eq(10355501925)
-#   end
-# end
-# 
-# describe 'list of directors' do
-#   it 'correctly extracts :name keys out of an AoH where'  do
-#     stooges = [{:name => "Larry"}, {:name => "Curly"}, {:name => "Moe"}, {:name => "Iggy"}]
-#     expect(list_of_directors(stooges)).to eq(["Larry", "Curly", "Moe", "Iggy"])
-#   end
-# end
-# 
-# describe 'gross_for_director method' do
-#   it "correctly totals the worldwide earnings for a director" do
-#     first_director_name = directors_database.first.values.first
-#     first_director_hash = directors_database.find{ |x| x[:name] == first_director_name }
-#     expect(gross_for_director(first_director_hash)).to eq(1357566430)
-#   end
-# end
-# 
+  describe 'movie_with_director_name' do
+    it "creates a new movie Hash with director's name provided" do
+      director_name = "Byron Poodle"
+      movies_coll = {
+        :worldwide_gross => 2,
+        :release_year => 2014,
+        :studio => "Karbit Poodles",
+        :title => "The Fire Hydrant of Doom"
+      }
+      new_movie = movie_with_director_name(director_name, movies_coll)
+
+      expect(new_movie[:director_name]).to eq(director_name)
+    end
+  end
+end
+
+describe 'movies_with_director_key' do
+  it 'adds a :director_name key an AoH of movies' do
+    dir_name = "Byron Poodle"
+    test_set = [{:title => "TestA"}, {:title => "TestB"}]
+    updated_movies = movies_with_director_key(dir_name, test_set)
+    expect(updated_movies[0][:director_name]).to eq(dir_name), "Should add director name to each movie Hash"
+    expect(updated_movies[1][:director_name]).to eq(dir_name), "Should add director name to each movie Hash"
+  end
+end
+
+describe 'movies_with_directors_set' do
+  it 'derp' do
+    test_data = [
+      { :name => "Byron Poodle", :movies => [
+        { :title => "At the park" },
+        { :title => "On the couch" },
+      ]
+      },
+      { :name => "Nancy Drew", :movies => [
+        { :title => "Biting" },
+      ]
+      }
+    ]
+    movies_with_directors_set(test_data)
+  end
+end
+
+describe 'gross_per_studio' do
+  it 'collects each movie based on the studio key' do
+    test_data = [
+      { :title => "Movie A", :studio => "Alpha Films", :worldwide_gross => 10 },
+      { :title => "Movie B", :studio => "Alpha Films", :worldwide_gross => 30 },
+      { :title => "Movie C", :studio => "Omega Films", :worldwide_gross => 30 }
+    ]
+    result = gross_per_studio(test_data)
+    expect(result["Alpha Films"]).to eq(40), "We should collect the totals of films made by this Alpha Films"
+    expect(result["Omega Films"]).to eq(30), "We should collect the totals of films made by this Omega Films"
+  end
+end
+
 
 describe 'The directors_database method can be processed by the studios_totals method' do
   describe "and correctly totals the directors' totals" do

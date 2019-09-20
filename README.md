@@ -232,9 +232,18 @@ solution.
 To help "train up" your see-saw technique skills,  we've provided you a lot of
 code in this lab. You're only responsible for implementing the methods:
 
-* `movies_with_director_key(name, movies_collection)`
-* `gross_per_studio(collection)`
+* `movies_with_director_key(name, movies_collection)`; is used by
+  `movies_with_directors_set`
 * `movies_with_directors_set(source)`
+* `gross_per_studio(collection)`
+
+The "main method" that returns the summary of earnings per studio ***will not
+be yours to edit***. That method, `studios_totals`, uses the methods listed
+above. This will help train you up for the very-real-world case of modifying
+pre-existing code.
+
+Details about the arguments and the expected return tyhpes are provided in
+comments in `lib/nds_extract.rb`.
 
 ## Conclusion
 
