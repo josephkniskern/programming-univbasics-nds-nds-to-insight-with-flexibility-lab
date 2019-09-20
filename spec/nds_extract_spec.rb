@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+
 # describe 'total_gross' do
 #   it 'correctly totals the total gross' do
 #     expect(total_gross(directors_database)).to eq(10355501925)
@@ -21,60 +22,68 @@ require 'spec_helper'
 #   end
 # end
 # 
-# describe 'The directors_database method can be processed by the directors_totals method' do
-#   it 'which returns a Hash describing director to total' do
-#     expect(directors_totals({})).to be_a(Hash)
-#   end
-# 
-#   describe "and correctly totals the directors' totals" do
-#     let(:expected) {
-#       {
-#         "Stephen Spielberg"=>1357566430,
-#         "Russo Brothers"=>2281002470,
-#         "James Cameron"=>2571020373,
-#         "Spike Lee"=>256624217,
-#         "Wachowski Siblings"=>806180282,
-#         "Robert Zemeckis"=>1273838385,
-#         "Quentin Tarantino"=>662738268,
-#         "Martin Scorsese"=>636812242,
-#         "Francis Ford Coppola"=>509719258
-#       }
-#     }
-# 
-#     it "correctly totals 'Stephen Spielberg'" do
-#       expect(directors_totals(directors_database)['Stephen Spielberg']).to eq(expected['Stephen Spielberg'])
-#     end
-# 
-#     it "correctly totals 'Russo Brothers'" do
-#       expect(directors_totals(directors_database)['Russo Brothers']).to eq(expected['Russo Brothers'])
-#     end
-# 
-#     it "correctly totals 'James Cameron'" do
-#       expect(directors_totals(directors_database)['James Cameron']).to eq(expected['James Cameron'])
-#     end
-# 
-#     it "correctly totals 'Spike Lee'" do
-#       expect(directors_totals(directors_database)['Spike Lee']).to eq(expected['Spike Lee'])
-#     end
-# 
-#     it "correctly totals 'Wachowski Siblings'" do
-#       expect(directors_totals(directors_database)['Wachowski Siblings']).to eq(expected['Wachowski Siblings'])
-#     end
-# 
-#     it "correctly totals 'Robert Zemeckis'" do
-#       expect(directors_totals(directors_database)['Robert Zemeckis']).to eq(expected['Robert Zemeckis'])
-#     end
-# 
-#     it "correctly totals 'Quentin Tarantino'" do
-#       expect(directors_totals(directors_database)['Quentin Tarantino']).to eq(expected['Quentin Tarantino'])
-#     end
-# 
-#     it "correctly totals 'Martin Scorsese'" do
-#       expect(directors_totals(directors_database)['Martin Scorsese']).to eq(expected['Martin Scorsese'])
-#     end
-# 
-#     it "correctly totals 'Francis Ford Coppola'" do
-#       expect(directors_totals(directors_database)['Francis Ford Coppola']).to eq(expected['Francis Ford Coppola'])
-#     end
-#   end
-# end
+
+describe 'The directors_database method can be processed by the studios_totals method' do
+  describe "and correctly totals the directors' totals" do
+    let(:expected) {
+      {
+       "Universal"=>1278335390,
+       "Columbia"=>217711904,
+       "Paramount"=>2382072020,
+       "Buena Vista"=>2602319056,
+       "Warner Brothers"=>1174295617,
+       "Fox"=>1280043473,
+       "TriStar"=>205881154,
+       "Focus"=>49275340,
+       "Dreamworks"=>155464351,
+       "Weinstein"=>283346153,
+       "Sony"=>135156125,
+       "Miramax"=>508129831,
+       "MGM"=>83471511
+      }
+    }
+
+    it "correctly total 'Universal'" do
+      expect(studios_totals(directors_database)['Universal']).to eq(expected['Universal'])
+    end
+    it "correctly total 'Columbia'" do
+      expect(studios_totals(directors_database)['Columbia']).to eq(expected['Columbia'])
+    end
+    it "correctly total 'Paramount'" do
+      expect(studios_totals(directors_database)['Paramount']).to eq(expected['Paramount'])
+    end
+    it "correctly total 'Buena Vista'" do
+      expect(studios_totals(directors_database)['Buena Vista']).to eq(expected['Buena Vista'])
+    end
+    it "correctly total 'Warner Brothers'" do
+      expect(studios_totals(directors_database)['Warner Brothers']).to eq(expected['Warner Brothers'])
+    end
+    it "correctly total 'Fox'" do
+      expect(studios_totals(directors_database)['Fox']).to eq(expected['Fox'])
+    end
+    it "correctly total 'TriStar'" do
+      expect(studios_totals(directors_database)['TriStar']).to eq(expected['TriStar'])
+    end
+    it "correctly total 'Focus'" do
+      expect(studios_totals(directors_database)['Focus']).to eq(expected['Focus'])
+    end
+    it "correctly total 'Dreamworks'" do
+      expect(studios_totals(directors_database)['Dreamworks']).to eq(expected['Dreamworks'])
+    end
+    it "correctly total 'Weinstein'" do
+      expect(studios_totals(directors_database)['Weinstein']).to eq(expected['Weinstein'])
+    end
+    it "correctly total 'Sony'" do
+      expect(studios_totals(directors_database)['Sony']).to eq(expected['Sony'])
+    end
+    it "correctly total 'Miramax'" do
+      expect(studios_totals(directors_database)['Miramax']).to eq(expected['Miramax'])
+    end
+    it "correctly total 'MGM'" do
+      expect(studios_totals(directors_database)['MGM']).to eq(expected['MGM'])
+    end
+
+
+
+  end
+end

@@ -6,21 +6,22 @@
 
 ## Introduction
 
-So far, we've seen the power of wrapping "primitive" Ruby calls in methods.  We
-have seen that this method of constructing programs is superior due to
-readability and maintainability when compared to "writing one big old set of
-nested loops."
+So far, we've seen the power of wrapping "primitive" Ruby calls in methods.
+This practice of constructing programs is superior since it helps readability
+and maintainability compared to "writing one big old set of nested loops."
 
-But sometimes it's not so clear how to get from a _given_ NDS to the NDS that
-we might need.
+Sometimes though it's not so clear how to get from a _given_ NDS to the NDS
+that we might need. It's easy to to feel "stuck." It happens to programmers
+all the time!
 
-Sometimes we need to think _flexibly_ and work from what we're given and get
-_one_ tiny step closer to the final gaol; or, maybe we need to make an example
-of the goal and work backwards from it.  We like to call this approach the
-"see-saw" approach (or "teeter-totter"). The idea is that Ruby is your partner
-on the see-saw: you get a step closer to the solution, it gets a step closer to
-the solution, back-and-forth until you meet in the middle and share in the
-glory of a job well done.
+When this happens, we need to think _flexibly_ and work from what we're given
+and get _one_ tiny step closer to the final goal &mdash; even if we can't see
+the finish line. Or, maybe we need to hard-code or type an example of the goal
+and work backwards from it.  We like to call this approach the "see-saw"
+approach (or "teeter-totter"). The idea is that Ruby is your partner on the
+see-saw: you get a step closer to the solution, it gets a step closer to the
+solution, back-and-forth until you meet in the middle and share in the glory of
+a job well done.
 
 ## See-saw Between Bottom-up and Top-down Method Writing
 
@@ -31,9 +32,10 @@ are `Integer`s representing "piece-count" and the keys' values are the "number
 of snacks with that many pieces."
 
 Recalling the effort we took to print out and understand the vending machine
-NDS, we know that the NDS is not set up to give us that information easily. We
-need to _transform_ this _given_ NDS into something else, a _new_ NDS, that
-allows us to derive _insights_ from _it_.
+NDS, we know that the NDS is not set up to give us that information easily
+(that's why Step 1 is so important!)  We need to _transform_ the _given_ NDS
+into something else, a _new_ NDS, that allows us to derive _insights_ from
+_it_.
 
 > **REAL-LIFE PROGRAMMING ESSENTIAL**: This very much mirrors some real-world
 > use of 3<sup>rd</sup> party information.  A Wiki of Ice and Fire (a site with
@@ -44,8 +46,8 @@ allows us to derive _insights_ from _it_.
 
 This transformation is **not** simple. It will require multiple steps. Instead
 of locking ourselves into solving the problem by starting from the _given_ NDS
-and working to the end-state, we're going to be flexible. We'll work from our
-_given_ NDS, and we'll work backward from an imagined, desired _answer_ NDS.
+and working to the end, we're going to be flexible. We'll work from our _given_
+NDS, and we'll work backward from an imagined, desired _answer_ NDS.
 
 ### See-...
 
@@ -62,7 +64,7 @@ Drink", :pieces=>1}, {:name=>"Pineapple Drink", :pieces=>1}], [{:name=>"Mints",
 Mints", :pieces=>99}]]]
 ```
 
-Look at the _given_ NDS. Where are the `:pieces` data? How can we get to them.
+Look at the _given_ NDS. Where are the `:pieces` data? How can we get to them?
 Here you can use the knowledge you gained from "Step 1:  Understand the NDS"
 and "Step 2: Use `[]` to verify your understanding from Step 1" to confirm your
 understanding of the _given_ NDS.
@@ -81,15 +83,21 @@ What do we want? Something like:
 
 We'll call this the "_answer_ NDS."
 
+It seems like a long way from the _given_ NDS to the _answer_ NDS. Let's try to
+imagine a middle point we can get to that would make getting the _answer_ NDS
+easy.
+
+Could we get to a world where we have only one big-old `Array` of the snack
+`Hash`es?
+
+_If we could_,we could cut out the whole "row" and "column" noise . Then, for
+each snack, We could find out how many pieces are in the snack and use that
+`:piece` `Integer` as a key. Then for each snack with that same `:piece`
+`Integer`, we could increment a "times seen" number by one.
+
+Let's aim to make that happen by transforming the _given_ NDS.
+
 ### See-...
-
-Back to the _given_ NDS.
-
-Could we get an `Array` of just the snack `Hash`es? If we could do that we
-could cut out the whole "row" and "column" noise and know we have an `Array`
-that has all the information we need.
-
-Let's write a method to transform the NDS into an `Array` of `Hash`es.
 
 ```ruby
 vm = [[[{:name=>"Vanilla Cookies", :pieces=>3}, {:name=>"Pistachio Cookies",
@@ -136,9 +144,8 @@ Let's give this `Array` a name to make this lesson clearer, let's call this the
 "Snacks Collection"
 
 Not bad, right! Using some simple iteration we were able to transform the
-_given_ NDS into something that has all the raw data we need to get our
-answers. Now all we need to do is build our strategy from the finish _back_ to
-this new NDS we just created.
+_given_ NDS into something that is our midpoint. Now all we need to do is
+finish the path from our midpoint to the goal NDS.
 
 ### -Saw...
 
@@ -151,13 +158,6 @@ We know we want a `Hash` like:
   1000 => 1 ...
 }
 ```
-
-Since we had an NDS with all the snacks and their `:pieces` count, we can loop
-through that `Array` and create an `Hash` of "piece count" keys that point to a
-"number of snacks" `Integer` values. We've "met in the middle." So the trick is
-to transform the "Snacks `Array` into the "Summary `Hash`" we just showed.
-
-### See-...
 
 Let's transform that snacks `Array` into the "Summary `Hash`".
 
@@ -218,13 +218,8 @@ pieces_collection = snack_collection(vm)
 p summary_snack_count_by_pieces(pieces_collection) #=> {3=>5, 12=>3, 20=>1, 5=>1, 1=>4, 13=>1, 1000=>1, 99=>1}
 ```
 
-Outputs:
-
-```ruby
-{3=>5, 12=>3, 20=>1, 5=>1, 1=>4, 13=>1, 1000=>1, 99=>1}
-```
-
-Look at that! We have that thing we wanted!
+Look at that! We have that thing we wanted! We've used the see-saw technique to
+do some really complex work to create a clear summary.
 
 ## Lab
 
@@ -232,6 +227,13 @@ In the lab, you're going to transform the given data into a `Hash` with
 information about various move studios. Use the see-saw technique to work from
 the given NDS to a "midpoint" NDS that you projected _backward_ from the
 solution.
+
+To help "train up" your see-saw technique skills,  we've provided you a lot of
+code in this lab. You're only responsible for implementing the methods:
+
+* `movies_with_director_key(name, movies_collection)`
+* `gross_per_studio(collection)`
+* `movies_with_directors_set(source)`
 
 ## Conclusion
 
