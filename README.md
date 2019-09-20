@@ -242,6 +242,10 @@ thinking that programming only works in _one_ direction. This lab is designed
 to help you see how the see-saw technique applies to transforming NDS to
 generate _insights_.
 
+The NDS' you need to do work as a professional will sometimes feel "out of
+reach." If you feel stuck, it's OK to type in (or, "hard-code") what you want
+and code to get to there instead of the far-off final result.
+
 The next lab will be a chance to put all the skills you've learned about NDS'
 together. Remember your training! Remember to analyze the NDS, create methods
 that help you do your work, and use the see-saw technique!
