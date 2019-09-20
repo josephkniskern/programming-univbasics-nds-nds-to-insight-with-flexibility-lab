@@ -215,7 +215,8 @@ def summary_snack_count_by_pieces(snacks)
 end
 
 pieces_collection = snack_collection(vm)
-p summary_snack_count_by_pieces(pieces_collection) #=> {3=>5, 12=>3, 20=>1, 5=>1, 1=>4, 13=>1, 1000=>1, 99=>1}
+p summary_snack_count_by_pieces(pieces_collection) #=>
+  {3=>5, 12=>3, 20=>1, 5=>1, 1=>4, 13=>1, 1000=>1, 99=>1}
 ```
 
 Look at that! We have that thing we wanted! We've used the see-saw technique to
