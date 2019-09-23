@@ -7,29 +7,36 @@
 ## Introduction
 
 So far, we've seen the power of wrapping "primitive" Ruby calls in methods.
-This practice of constructing programs is superior since it helps readability
-and maintainability compared to "writing one big old set of nested loops."
+We've also seen the power of wrapping "First-Order" methods inside other
+methods.
+
+This practice of constructing programs is **superior** since it helps
+readability and maintainability compared to "writing one big old set of nested
+loops."
 
 Sometimes though it's not so clear how to get from a _given_ NDS to the NDS
-that we might need. It's easy to to feel "stuck." It happens to programmers
-all the time!
+that we might need. It's easy to to feel "stuck." It happens to programmers all
+the time!
 
 When this happens, we need to think _flexibly_ and work from what we're given
 and get _one_ tiny step closer to the final goal &mdash; even if we can't see
 the finish line. Or, maybe we need to hard-code or type an example of the goal
 and work backwards from it.  We like to call this approach the "see-saw"
 approach (or "teeter-totter"). The idea is that Ruby is your partner on the
-see-saw: you get a step closer to the solution, it gets a step closer to the
-solution, back-and-forth until you meet in the middle and share in the glory of
-a job well done.
+see-saw: you get a step closer to the solution, it gets a step away from the
+solution _toward you_, back-and-forth until you meet in the middle and share in
+the glory of a job well done.
 
 ## See-saw Between Bottom-up and Top-down Method Writing
 
 Lets consider our vending machine. Snacks, as we have seen, know how many
-pieces they have. We'd like to know how many snacks have `1` piece, how many
-have `2` pieces, `3`, `999`, `1000`, etc. So we'd like a `Hash` where the keys
-are `Integer`s representing "piece-count" and the keys' values are the "number
-of snacks with that many pieces."
+pieces they have. The _insight_ we'd like to have is:
+
+> How many snacks have `1` piece, how many have `2` pieces, `3`, `999`, `1000`,
+> etc.
+
+So we'd like a `Hash` where the keys are `Integer`s representing "piece-count"
+and the keys' values are the "number of snacks with that many pieces."
 
 Recalling the effort we took to print out and understand the vending machine
 NDS, we know that the NDS is not set up to give us that information easily
@@ -90,7 +97,7 @@ easy.
 Could we get to a world where we have only one big-old `Array` of the snack
 `Hash`es?
 
-_If we could_,we could cut out the whole "row" and "column" noise . Then, for
+_If we could_, we could cut out the whole "row" and "column" noise . Then, for
 each snack, We could find out how many pieces are in the snack and use that
 `:piece` `Integer` as a key. Then for each snack with that same `:piece`
 `Integer`, we could increment a "times seen" number by one.
@@ -142,6 +149,9 @@ Outputs:
 
 Let's give this `Array` a name to make this lesson clearer, let's call this the
 "Snacks Collection"
+
+> **Reflect** Are there methods you think we should extract from this code? If
+> so, try writing some methods and make sure you get the same output!
 
 Not bad, right! Using some simple iteration we were able to transform the
 _given_ NDS into something that is our midpoint. Now all we need to do is
@@ -222,25 +232,32 @@ p summary_snack_count_by_pieces(pieces_collection) #=>
 Look at that! We have that thing we wanted! We've used the see-saw technique to
 do some really complex work to create a clear summary.
 
+> **Reflect** Are there methods you think we should extract from this code? If
+> so, try writing some methods and make sure you get the same output!
+
 ## Lab
 
 In the lab, you're going to transform the given data into a `Hash` with
 information about various move studios. Use the see-saw technique to work from
-the given NDS to a "midpoint" NDS that you projected _backward_ from the
-solution.
+the given NDS to a "midpoint" NDS.
 
-To help "train up" your see-saw technique skills,  we've provided you a lot of
-code in this lab. You're only responsible for implementing the methods:
+To help "train up" your see-saw technique skills, we've provided you code that
+***you should not change***. This is very similar to the real world where you
+can't throw out other methods (because you might break something!).
+
+The "main method" that returns the summary of earnings per studio ***will not
+be yours to edit***. That method, `studios_totals`, uses the methods listed
+above. This will help train you up for the very-real-world case of modifying
+pre-existing code.
+
+You're only responsible for implementing the methods, but are invited to use
+the helper methods we've provided:
 
 * `movies_with_director_key(name, movies_collection)`; is used by
   `movies_with_directors_set`
 * `movies_with_directors_set(source)`
 * `gross_per_studio(collection)`
 
-The "main method" that returns the summary of earnings per studio ***will not
-be yours to edit***. That method, `studios_totals`, uses the methods listed
-above. This will help train you up for the very-real-world case of modifying
-pre-existing code.
 
 Details about the arguments and the expected return tyhpes are provided in
 comments in `lib/nds_extract.rb`.
